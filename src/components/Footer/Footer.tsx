@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="row align-items-center g-0">
           <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center">
             <img
-              src="https://www.grupocontem.com.br/src/img/icone-whats.png"
+              src="/img/icone-whats.png"
               alt="Ícone do WhatsApp"
             />
           </div>

@@ -15,33 +15,21 @@ export default function OutrosProdutos() {
             target: "_blank"
         },
         {
-            img: "sulamerica-logo.png",
-            link: "https://curt.link/plano-saude",
-            titulo: "Plano Odontológico",
-            target: "_blank"
-        },
-        {
             img: "porto-seguro.png",
             link: "https://curt.link/plano-saude",
             titulo: "Seguro Viagem",
             target: "_blank"
         },
         {
-            img: "porto-seguro.png",
-            link: "https://wwws.portoseguro.com.br/vendaonline/residencia/home.ns?cod=c435e27c838445aebdb010459e088186&utm_source=57919J&utm_medium=geradorLinks&utm_campaign=GeradordeLinks_LJ57YJ&utm_content=CONTEM_CORRETORA_DE_SEGUROS",
-            titulo: "Seguro Residencial",
+            img: "logo.png",
+            link: "https://api.whatsapp.com/send?phone=5521998786297",
+            titulo: "Plano Odontológico",
             target: "_blank"
         },
         {
-            img: "porto-seguro.png",
-            link: "https://curt.link/plano-saude",
-            titulo: "Seguro de Equipamentos Portáteis",
-            target: "_blank"
-        },
-        {
-            img: "porto-seguro.png",
-            link: "https://contratafacil-segurovida.paas.sulamerica.com.br/?corretor_id=d99b943e-19d9-46eb-b310-f08c83f5f5b1&utm_source=indicavida",
-            titulo: "Seguro de Vida",
+            img: "logo.png",
+            link: "https://api.whatsapp.com/send?phone=5521998786297",
+            titulo: "Saúde",
             target: "_blank"
         }
     ];
@@ -64,7 +52,7 @@ export default function OutrosProdutos() {
 
             <section className="produtos">
                 <div className="container">
-                    <div className="row">
+                    <div className="row justify-content-center">
                         {produtos.map((produto, index) => (
                             <div
                                 className="col-lg-4 col-md-6 col-sm-6 col-12 mb-4"
