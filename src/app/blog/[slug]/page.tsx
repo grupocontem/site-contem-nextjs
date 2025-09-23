@@ -15,7 +15,7 @@ export type Post = {
     atualizacao?: string | null;
 };
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.grupocontem.com.br";
+const SITE_URL = process.env.NEXT_PUBLIC_BLOG_URL || "https://blog.grupocontem.com.br";
 const POSTS_IMG_BASE =
     process.env.NEXT_PUBLIC_POSTS_IMG_BASE || `${SITE_URL}/src/img/posts`;
 const BLOG_ENDPOINT =
