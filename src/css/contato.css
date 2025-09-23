@@ -1,0 +1,38 @@
+.contato{
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background-image: url("/img/fundo.jpg");
+}
+
+.contato h3{
+    text-transform: uppercase;
+    color: #f2552e;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0px;
+    margin-bottom: 20px;
+}
+
+.nav-pills{
+    justify-content: right;
+}
+
+.nav-link{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background-color: #f0ad4e;
+}
+
+.enviar-contato{
+    padding: 10px!important;
+    font-size: 13px!important;
+}
+
+.enviar-ouvidoria{
+    padding: 10px!important;
+    font-size: 13px!important;
+}

@@ -1,0 +1,72 @@
+@media (prefers-reduced-motion: reduce) {
+    .modal,
+    .modal-backdrop {
+        transition: none !important;
+    }
+}
+
+.modal-open {
+    overflow: hidden;
+    padding-right: 0 !important;
+}
+
+.gc-policy-scroll {
+    max-height: 60vh;
+    overflow: auto;
+    padding-right: 4px;
+}
+.gc-policy-scroll h6 {
+    margin-top: 1rem;
+}
+
+/* Cores da marca */
+:root {
+    --gc-orange: #f2552e;
+    --gc-orange-hover: #d94b26;
+    --gc-text: #333333;
+    --gc-ghost-border: #dcdcdc;
+    --gc-ghost-bg-hover: #f6f6f6;
+}
+
+/* Botão principal (laranja) */
+.btn-gc-primary {
+    background-color: var(--gc-orange);
+    border-color: var(--gc-orange);
+    color: #fff;
+    border-radius: 10px;
+    padding: 0.55rem 1.5rem;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(242, 85, 46, 0.25);
+}
+.btn-gc-primary:hover,
+.btn-gc-primary:focus {
+    background-color: var(--gc-orange-hover);
+    border-color: var(--gc-orange-hover);
+    color: #fff;
+}
+
+/* Botão ghost (Recusar / Voltar) */
+.btn-gc-ghost {
+    background-color: #fff;
+    color: var(--gc-text);
+    border: 1px solid var(--gc-ghost-border);
+    border-radius: 10px;
+    padding: 0.55rem 1.25rem;
+    font-weight: 500;
+}
+.btn-gc-ghost:hover,
+.btn-gc-ghost:focus {
+    background-color: var(--gc-ghost-bg-hover);
+    color: #000;
+}
+
+/* Link com cor da marca dentro do modal */
+.link-gc {
+    color: var(--gc-orange);
+    text-decoration: none;
+    font-weight: 600;
+}
+.link-gc:hover {
+    color: var(--gc-orange-hover);
+    text-decoration: underline;
+}

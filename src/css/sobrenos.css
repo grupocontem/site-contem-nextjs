@@ -1,0 +1,46 @@
+/* Descrição Grupo */
+
+.descricao-grupo{
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background-image: url("/img/fundo.jpg");
+}
+
+.descricao-grupo h2{
+    text-transform: uppercase;
+    color: #f2552e;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0px;
+    margin-bottom: 20px;
+}
+
+.bloco-conteudo:before,
+.bloco-conteudo:after {
+    content: "";
+    display: table;
+}
+.bloco-conteudo:after {
+    clear: both;
+}
+.bloco-conteudo {
+    zoom: 1
+}
+
+.bloco-item{
+    margin-top: 35px;
+}
+
+.img-bloco{
+    position: relative;
+    float: left;
+}
+
+.bloco-titulos{
+    text-align: left;
+    margin-left: 75px;
+}
+
+.bloco-titulos h4{
+    color: #f2552e;
+}

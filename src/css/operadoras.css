@@ -1,0 +1,25 @@
+
+.operadoras{
+    background-image: url("/img/fundo.jpg");
+    padding: 70px;
+}
+
+.operadoras h3{
+    text-transform: uppercase;
+    color: #f2552e;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.card{
+    margin: 15px 15px;
+    padding: 0;
+    border: 1px solid #ebebeb;
+    background-color: #fff;
+    text-align: center;
+    -moz-box-shadow: rgba(255,138,0,0.3) 0 0 40px;
+    -webkit-box-shadow: rgb(255 138 0 / 30%) 0 0 40px;
+    box-shadow: rgb(255 138 0 / 30%) 0 0 40px;
+}

@@ -1,0 +1,14 @@
+.header{ position: sticky; top: 0; width: 100%; z-index: 1030; }
+/* Border under top area */
+.header :global(.border-bottom){ border-bottom: 1px solid white !important; }
+
+/* Nav link separators and active color */
+.navLink { border-right: 1px solid #ee3926; padding-top: 2px; padding-bottom: 2px; margin-bottom: 2px; font-weight: 600; font-size: 14px; }
+.navLinkActive { color: #f25c56 !important; }
+
+/* Social icon sizing */
+.iconWrap img { width: 32px; height: auto; display: block; }
+
+@media (max-width: 992px) {
+  .navLink { border-right: none; }
+}

@@ -1,0 +1,26 @@
+
+.elegibilidades{
+    background-image: url("/img/fundo.jpg");
+    padding: 70px;
+    text-align: center;
+}
+
+.elegibilidades h2{
+    text-transform: uppercase;
+    color: #f2552e;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0px;
+    margin-bottom: 20px;
+}
+
+.card{
+    margin: 15px 15px;
+    padding: 25px;
+    border: 1px solid #ebebeb;
+    background-color: #fff;
+    text-align: center;
+    -moz-box-shadow: rgba(255,138,0,0.3) 0px 0px 40px;
+    -webkit-box-shadow: rgb(255 138 0 / 30%) 0px 0px 40px;
+    box-shadow: rgb(255 138 0 / 30%) 0px 0px 40px;
+}
