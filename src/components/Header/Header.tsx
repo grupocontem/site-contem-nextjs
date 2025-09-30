@@ -151,22 +151,22 @@ export default function Header() {
             <div className="d-none d-lg-flex align-items-center gap-2 ms-4">
               <a href="https://www.facebook.com/grupocontem" target="_blank" rel="noopener noreferrer">
                 <span className={styles.iconWrap}>
-                  <img src="https://www.grupocontem.com.br/src/img/facebook_icon.png" alt="Facebook" />
+                  <img src="/img/facebook_icon.png" alt="Facebook" />
                 </span>
               </a>
               <a href="https://www.instagram.com/grupocontem/" target="_blank" rel="noopener noreferrer">
                 <span className={styles.iconWrap}>
-                  <img src="https://www.grupocontem.com.br/src/img/instagram_icon.png" alt="Instagram" />
+                  <img src="/img/instagram_icon.png" alt="Instagram" />
                 </span>
               </a>
               <a href="https://www.linkedin.com/company/grupocontem/" target="_blank" rel="noopener noreferrer">
                 <span className={styles.iconWrap}>
-                  <img src="https://www.grupocontem.com.br/src/img/linkedin_icon.png" alt="LinkedIn" />
+                  <img src="/img/linkedin_icon.png" alt="LinkedIn" />
                 </span>
               </a>
               <a href="https://www.tiktok.com/@grupocontemadm" target="_blank" rel="noopener noreferrer">
                 <span className={styles.iconWrap}>
-                  <img src="https://www.grupocontem.com.br/src/img/tiktok_icon.png" alt="TikTok" />
+                  <img src="/img/tiktok_icon.png" alt="TikTok" />
                 </span>
               </a>
             </div>

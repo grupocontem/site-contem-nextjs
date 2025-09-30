@@ -58,7 +58,7 @@ export default function Footer() {
           </p>
           <p className={'text-center'}>
             <img
-              src="https://www.grupocontem.com.br/src/img/ans.jpg"
+              src="/img/ans.jpg"
               alt="ANS"
               className="mx-auto d-block"
             />

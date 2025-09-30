@@ -93,27 +93,6 @@ export default function Home() {
                               </div>
                           </div>
                       </div>
-
-                      <hr />
-
-                      <div className="row descricao-item">
-                          <div className="col-12 col-md-12">
-                              <div className="row align-items-center">
-                                  <div className="col-lg-3" id="icone-descricao">
-                                      <img src={'/img/icone-corretor.png'} alt="Ícone corretor" />
-                                  </div>
-                                  <div className="col-lg-6" id="descricao-texto">
-                                      <p><strong>SITE DO CORRETOR</strong></p>
-                                      <p>Aqui o corretor encontra tudo que precisa atualizado diariamente para seu trabalho.</p>
-                                  </div>
-                                  <div className="col-lg-3" id="button-descricao">
-                                      <a href="/pj-contem">
-                                          <button type="button" className="btn btn-primary">Clique Aqui</button>
-                                      </a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
                   </div>
               </section>
         </>
