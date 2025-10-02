@@ -341,11 +341,6 @@ const faq: FaqSection[] = [
                     {
                         type: "p",
                         text:
-                            "GESTÃO SAÚDE\nCentral: (21) 3952-9592 | 0800 591 0694\nWhatsApp: (21) 3030-8744\nE-mail: relacionamentocomocliente@gestaoplanodesaude.com\nSite: www.gestaoplanodesaude.com.br\nPortal: https://www.digitalsaude.com.br/portal/gestaosaude",
-                    },
-                    {
-                        type: "p",
-                        text:
                             "GRUPO CONTÉM\nCentral: (21) 2277-8383 | 0800 718 8885\nWhatsApp: (21) 4040-3737\nE-mail: relacionamentocomocliente@grupocontem.com.br\nSite: www.grupocontem.com.br\nPortal: https://www.digitalsaude.com.br/portal/contem",
                     },
                 ],
