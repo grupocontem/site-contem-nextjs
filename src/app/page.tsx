@@ -62,7 +62,7 @@ export default function Home() {
               <section>
                   <div className="faixa-laranja d-flex flex-column align-items-center gap-3 text-center p-5">
                       <h3 className="m-0">Simule, compare e contrate planos direto por aqui</h3>
-                      <a href="/cotacao" className="text-decoration-none">
+                      <a href="https://api.whatsapp.com/send?phone=5521998786297" className="text-decoration-none">
                           <button type="button" className="btn btn-outline-light">Compare</button>
                       </a>
                   </div>
