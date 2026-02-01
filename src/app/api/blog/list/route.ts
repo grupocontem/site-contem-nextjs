@@ -55,6 +55,8 @@ export async function GET(request: Request) {
         apiUrl.searchParams.set("per_page", perPage);
         apiUrl.searchParams.set("page", page);
 
+        console.log(`[API Blog List] Chamando API externa: ${apiUrl.toString()}`);
+
         const resp = await fetch(apiUrl.toString(), {
             method: "GET",
             headers: { 

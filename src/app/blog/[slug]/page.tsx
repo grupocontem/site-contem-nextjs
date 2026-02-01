@@ -15,7 +15,8 @@ export type Post = {
     atualizacao?: string | null;
 };
 
-const BLOG_ENDPOINT = "https://api.grupocontem.com.br/api/site/contem/blog/";
+const SITE_URL = process.env.NEXT_PUBLIC_BLOG_URL;
+const SEO_URL = process.env.SEO_URL;
 
 function buildPostImageUrl(banner: string) {
     return banner;
@@ -41,38 +42,20 @@ function fmtBRDateTime(d: string) {
 
 async function fetchPostBySlug(slug: string): Promise<Post | null> {
     try {
-        // Primeiro, buscamos na listagem para encontrar o ID pelo slug
-        const listUrl = new URL(BLOG_ENDPOINT);
-        listUrl.searchParams.set("per_page", "100"); // Aumentar chance de encontrar se não for o mais recente
-
-        const listRes = await fetch(listUrl.toString(), {
+        const url = `https://api.grupocontem.com.br/api/site/contem/blog/post/slug/${slug}`;
+        console.log(`[Blog Page] Buscando post diretamente na API externa: ${url}`);
+        const res = await fetch(url, {
             method: "GET",
             headers: {
-                Accept: "application/json",
-                "User-Agent": "next-app"
+                "Accept": "application/json",
+                "User-Agent": "insomnia/11.6.1"
             },
             next: { revalidate: 60 },
         });
 
-        if (!listRes.ok) return null;
-        const listJson = await listRes.json();
-        const items = listJson.data[0]?.items || [];
-        
-        const found = items.find((i: any) => i.slug === slug);
-        if (!found) return null;
-
-        const postRes = await fetch(`${BLOG_ENDPOINT}${found.id}`, {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-                "User-Agent": "next-app"
-            },
-            next: { revalidate: 60 },
-        });
-
-        if (!postRes.ok) return null;
-        const postJson = await postRes.json();
-        const raw = postJson.data[0];
+        if (!res.ok) return null;
+        const json = await res.json();
+        const raw = json.data[0];
 
         if (!raw) return null;
 
@@ -81,11 +64,12 @@ async function fetchPostBySlug(slug: string): Promise<Post | null> {
             slug: raw.slug,
             titulo: raw.title,
             conteudoHtml: raw.content,
-            banner: raw.banner || found.banner, // Fallback para o banner da lista se não vier no detalhe
+            banner: raw.banner || "",
             dataHora: raw.created_at,
             atualizacao: raw.updated_at,
         };
-    } catch {
+    } catch (err) {
+        console.error("Error fetching post by slug:", err);
         return null;
     }
 }
@@ -98,8 +82,8 @@ export async function generateMetadata(
     const post = await fetchPostBySlug(slug);
 
     const title = post?.titulo || "Post | Grupo Contém";
-    const url = `${BLOG_ENDPOINT}/blog/${slug}`;
-    const img = post ? buildPostImageUrl(post.banner) : `${BLOG_ENDPOINT}/src/img/favicon.ico`;
+    const url = `${SITE_URL}/blog/${slug}`;
+    const img = post ? buildPostImageUrl(post.banner) : `${SITE_URL}/src/img/favicon.ico`;
     const description = post ? post.titulo : "Conteúdo do blog Grupo Contém";
 
     return {
@@ -131,7 +115,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         notFound();
     }
 
-    const canonicalUrl = `${BLOG_ENDPOINT}/blog/${post.slug}`;
+    const canonicalUrl = `${SEO_URL ?? 'https://blog.grupocontem.com.br'}/blog/${post.slug}`;
     const dataPost = fmtBRDateTime(post.dataHora);
     const atualizacao = post.atualizacao ? fmtBRDateTime(post.atualizacao) : null;
     const heroUrl = buildPostImageUrl(post.banner);
