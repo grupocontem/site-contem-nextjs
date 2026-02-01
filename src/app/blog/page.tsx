@@ -4,13 +4,20 @@ import "../../css/blog.css";
 import React, { useEffect, useMemo, useState } from "react";
 
 type RawPost = {
-    id: number;
+    id: string;
     conteudo: string;
     data_hora: string;
     titulo: string;
     nome_arquivo: string;
     nome_pagina: string;
     atualizacao?: string | null;
+};
+
+type Meta = {
+    total: number;
+    per_page: number;
+    current_page: number;
+    last_page: number;
 };
 
 type Post = RawPost & {
@@ -23,7 +30,7 @@ type Post = RawPost & {
 
 const stripHtml = (html: string) => html.replace(/<\/?[^>]+(>|$)/g, "");
 const truncate = (s: string, n = 255) => (s.length > n ? s.slice(0, n) : s);
-const imgPublicUrl = (fileName: string) => `${process.env.NEXT_PUBLIC_BLOG_URL}/src/img/posts/${fileName}`;
+const imgPublicUrl = (fileName: string) => fileName.startsWith("http") ? fileName : `${process.env.NEXT_PUBLIC_BLOG_URL}/src/img/posts/${fileName}`;
 
 const toDate = (s?: string | null) => {
     if (!s) return null;
@@ -35,17 +42,22 @@ const toDate = (s?: string | null) => {
 export default function Blog() {
     const [loading, setLoading] = useState(true);
     const [raw, setRaw] = useState<RawPost[]>([]);
+    const [meta, setMeta] = useState<Meta | null>(null);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         let alive = true;
+        setLoading(true);
         (async () => {
             try {
-                const r = await fetch("/api/blog/list", { cache: "no-store" });
+                const r = await fetch(`/api/blog/list?page=${page}&per_page=9`, { cache: "no-store" });
                 if (!r.ok) throw new Error(`HTTP ${r.status}`);
-                const rows: RawPost[] = await r.json();
+                const data: { items: RawPost[], meta: Meta } = await r.json();
 
-                const latest30 = rows.slice(0, 30);
-                if (alive) setRaw(latest30);
+                if (alive) {
+                    setRaw(data.items);
+                    setMeta(data.meta);
+                }
             } catch (e) {
                 console.error("Erro ao buscar posts:", e);
                 if (alive) setRaw([]);
@@ -56,7 +68,7 @@ export default function Blog() {
         return () => {
             alive = false;
         };
-    }, []);
+    }, [page]);
 
     const posts: Post[] = useMemo(() => {
         return raw.map((p) => {
@@ -174,6 +186,52 @@ export default function Blog() {
                             )
                         }
                     </div>
+
+                    {meta && meta.last_page > 1 && (
+                        <div className="row mt-5">
+                            <div className="col-12 d-flex justify-content-center">
+                                <nav aria-label="Navegação de posts">
+                                    <ul className="pagination">
+                                        <li className={`page-item ${page === 1 ? 'disabled' : ''}`}>
+                                            <button 
+                                                className="page-link" 
+                                                onClick={() => setPage(p => Math.max(1, p - 1))}
+                                                disabled={page === 1}
+                                            >
+                                                Anterior
+                                            </button>
+                                        </li>
+                                        {Array.from({ length: meta.last_page }).map((_, i) => {
+                                            const p = i + 1;
+                                            // Lógica simples para não mostrar muitas páginas se houver dezenas
+                                            if (meta.last_page > 7) {
+                                                if (p !== 1 && p !== meta.last_page && (p < page - 1 || p > page + 1)) {
+                                                    if (p === 2 || p === meta.last_page - 1) return <li key={p} className="page-item disabled"><span className="page-link">...</span></li>;
+                                                    return null;
+                                                }
+                                            }
+                                            return (
+                                                <li key={p} className={`page-item ${page === p ? 'active' : ''}`}>
+                                                    <button className="page-link" onClick={() => setPage(p)}>
+                                                        {p}
+                                                    </button>
+                                                </li>
+                                            );
+                                        })}
+                                        <li className={`page-item ${page === meta.last_page ? 'disabled' : ''}`}>
+                                            <button 
+                                                className="page-link" 
+                                                onClick={() => setPage(p => Math.min(meta.last_page, p + 1))}
+                                                disabled={page === meta.last_page}
+                                            >
+                                                Próximo
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </section>
         </>

@@ -6,27 +6,26 @@ import {notFound} from "next/navigation";
 export const dynamic = "force-dynamic";
 
 export type Post = {
-    id: number;
+    id: string;
     slug: string;
     titulo: string;
     conteudoHtml: string;
-    nomeArquivo: string;
+    banner: string;
     dataHora: string;
     atualizacao?: string | null;
 };
 
-const SITE_URL = process.env.NEXT_PUBLIC_BLOG_URL || "https://blog.grupocontem.com.br";
-const POSTS_IMG_BASE =
-    process.env.NEXT_PUBLIC_POSTS_IMG_BASE || `${SITE_URL}/src/img/posts`;
-const BLOG_ENDPOINT =
-    process.env.NEXT_PUBLIC_BLOG_ENDPOINT || "https://blog.grupocontem.com.br/posts.php";
+const BLOG_ENDPOINT = "https://api.grupocontem.com.br/api/site/contem/blog/";
 
-function buildPostImageUrl(file: string) {
-    return `${POSTS_IMG_BASE}/${file}`;
+function buildPostImageUrl(banner: string) {
+    return banner;
 }
 
 function fmtBRDateTime(d: string) {
     try {
+        if (d.includes("/")) {
+            return d;
+        }
         const isoish = d.includes("T") ? d : d.replace(" ", "T");
         return new Date(isoish).toLocaleString("pt-BR", {
             day: "2-digit",
@@ -42,32 +41,49 @@ function fmtBRDateTime(d: string) {
 
 async function fetchPostBySlug(slug: string): Promise<Post | null> {
     try {
-        const body = new URLSearchParams({ funcao: "post", slug });
-        const res = await fetch(BLOG_ENDPOINT, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-                Accept: "application/json",
-            },
-            body,
-            next: { revalidate: 0 },
-        });
-        if (!res.ok) return null;
-        const raw = await res.json();
+        // Primeiro, buscamos na listagem para encontrar o ID pelo slug
+        const listUrl = new URL(BLOG_ENDPOINT);
+        listUrl.searchParams.set("per_page", "100"); // Aumentar chance de encontrar se não for o mais recente
 
-        const atual =
-            raw.atualizacao && raw.atualizacao !== "0000-00-00 00:00:00"
-                ? String(raw.atualizacao)
-                : null;
+        const listRes = await fetch(listUrl.toString(), {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "User-Agent": "next-app"
+            },
+            next: { revalidate: 60 },
+        });
+
+        if (!listRes.ok) return null;
+        const listJson = await listRes.json();
+        const items = listJson.data[0]?.items || [];
+        
+        const found = items.find((i: any) => i.slug === slug);
+        if (!found) return null;
+
+        const postRes = await fetch(`${BLOG_ENDPOINT}${found.id}`, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "User-Agent": "next-app"
+            },
+            next: { revalidate: 60 },
+        });
+
+        if (!postRes.ok) return null;
+        const postJson = await postRes.json();
+        const raw = postJson.data[0];
+
+        if (!raw) return null;
 
         return {
-            id: Number(raw.id),
-            slug: String(raw.nome_pagina),
-            titulo: String(raw.titulo),
-            conteudoHtml: String(raw.conteudo),
-            nomeArquivo: String(raw.nome_arquivo),
-            dataHora: String(raw.data_hora),
-            atualizacao: atual,
+            id: raw.id,
+            slug: raw.slug,
+            titulo: raw.title,
+            conteudoHtml: raw.content,
+            banner: raw.banner || found.banner, // Fallback para o banner da lista se não vier no detalhe
+            dataHora: raw.created_at,
+            atualizacao: raw.updated_at,
         };
     } catch {
         return null;
@@ -82,8 +98,8 @@ export async function generateMetadata(
     const post = await fetchPostBySlug(slug);
 
     const title = post?.titulo || "Post | Grupo Contém";
-    const url = `${SITE_URL}/blog/${slug}`;
-    const img = post ? buildPostImageUrl(post.nomeArquivo) : `${SITE_URL}/src/img/favicon.ico`;
+    const url = `${BLOG_ENDPOINT}/blog/${slug}`;
+    const img = post ? buildPostImageUrl(post.banner) : `${BLOG_ENDPOINT}/src/img/favicon.ico`;
     const description = post ? post.titulo : "Conteúdo do blog Grupo Contém";
 
     return {
@@ -107,18 +123,18 @@ export async function generateMetadata(
     };
 }
 
-export default async function BlogPostPage({ params }: any) {
-    const { slug } = params as { slug: string };
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
     const post = await fetchPostBySlug(slug);
 
     if (!post) {
         notFound();
     }
 
-    const canonicalUrl = `${SITE_URL}/blog/${post.slug}`;
+    const canonicalUrl = `${BLOG_ENDPOINT}/blog/${post.slug}`;
     const dataPost = fmtBRDateTime(post.dataHora);
     const atualizacao = post.atualizacao ? fmtBRDateTime(post.atualizacao) : null;
-    const heroUrl = buildPostImageUrl(post.nomeArquivo);
+    const heroUrl = buildPostImageUrl(post.banner);
 
     return (
         <>
