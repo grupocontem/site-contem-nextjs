@@ -1,5 +1,7 @@
 import '../../css/operadoras.css'
 import type {Metadata} from "next";
+import fs from 'fs';
+import path from 'path';
 
 export const metadata: Metadata = {
     title: "Operadoras | Grupo Contém",
@@ -7,18 +9,15 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-    const imagens = [
-        "amacor.jpg",
-        "sulmed.jpg",
-        "verte.png",
-        "onix.png",
-        "odonto.png",
-        "vale-do-aco.png",
-        "norte-fluminense.png",
-        "oplan.png",
-        "unity-saude.png",
-        "seguros-unimed.png"
-    ];
+    const operadorasDir = path.join(process.cwd(), 'public', 'img', 'operadoras', 'ativas');
+    const allFiles = fs.readdirSync(operadorasDir);
+
+    const imagens = allFiles.filter(file => {
+        const filePath = path.join(operadorasDir, file);
+        const isFile = fs.statSync(filePath).isFile();
+        const isImage = /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(file);
+        return isFile && isImage;
+    });
 
     return (
         <>
@@ -50,7 +49,7 @@ export default function Page() {
                                     <div className="col-lg-4 col-md-6 col-sm-6 col-12" key={index}>
                                         <div className="card">
                                             <img
-                                                src={`/img/operadoras/${img}`}
+                                                src={`/img/operadoras/ativas/${img}`}
                                                 className="card-img-top"
                                                 alt={img.replace(/[-.]/g, " ")}
                                             />
