@@ -30,6 +30,12 @@ export default function Home() {
                               data-bs-slide-to="1"
                               aria-label="Slide 2"
                           ></button>
+                          <button
+                              type="button"
+                              data-bs-target="#carouselExampleSlidesOnly"
+                              data-bs-slide-to="2"
+                              aria-label="Slide 3"
+                          ></button>
                       </div>
 
                       <div className="carousel-inner">
@@ -54,6 +60,10 @@ export default function Home() {
                                   <br />
                                   <img src={'/img/ans-banner3.png'} alt="ANS" height="18" className="ans" />
                               </div>
+                          </div>
+
+                          <div className="carousel-item" id="carousel-container" data-bs-interval="5000">
+                              <img src={'/img/banner/Banner-Principal.jpeg'} className="d-block w-100" id="img-carousel" alt="Banner Principal" />
                           </div>
                       </div>
                   </div>
