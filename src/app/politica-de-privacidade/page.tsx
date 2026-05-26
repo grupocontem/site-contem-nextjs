@@ -230,8 +230,8 @@ export default function PoliticaDePrivacidade() {
         <h3 className="h5 fw-bold">Contato</h3>
         <p>
           Dúvidas sobre esta política? Entre em contato:{" "}
-          <a href="mailto:relacionamentocomocliente@grupocontem.com.br">
-            relacionamentocomocliente@grupocontem.com.br
+          <a href="mailto:ti@grupocontem.com.br">
+            ti@grupocontem.com.br
           </a>
         </p>
       </section>

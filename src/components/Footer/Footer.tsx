@@ -77,12 +77,6 @@ export default function Footer() {
           >
             Política de Privacidade e Termos de Uso
           </Link>
-          <a
-            href="mailto:ti@grupocontem.com.br"
-            style={{ fontSize: 12, color: '#888', whiteSpace: 'nowrap', marginLeft: 'auto' }}
-          >
-            ti@grupocontem.com.br
-          </a>
         </div>
       </div>
 
