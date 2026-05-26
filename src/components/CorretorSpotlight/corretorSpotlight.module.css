@@ -1,0 +1,92 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1060;
+  cursor: pointer;
+}
+
+.highlight {
+  position: absolute;
+  border-radius: 6px;
+  pointer-events: none;
+  animation: highlightPulse 2s ease-in-out infinite;
+}
+
+@keyframes highlightPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 9999px rgba(0, 0, 0, 0.78),
+      0 0 0 3px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 0 9999px rgba(0, 0, 0, 0.78),
+      0 0 0 8px rgba(255, 255, 255, 0.15);
+  }
+}
+
+.callout {
+  position: absolute;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+  text-align: center;
+  min-width: 270px;
+  cursor: default;
+  animation: fadeSlideIn 0.35s ease-out;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.callout::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 10px solid transparent;
+  border-top: none;
+  border-bottom: 10px solid white;
+}
+
+.calloutText {
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.calloutCta {
+  display: block;
+  background: #ee3926;
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none !important;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 10px;
+  transition: background 0.2s;
+}
+
+.calloutCta:hover {
+  background: #c62e1a;
+}
+
+.calloutDismiss {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.calloutDismiss:hover { color: #555; }
