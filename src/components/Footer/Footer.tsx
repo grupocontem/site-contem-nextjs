@@ -51,10 +51,10 @@ export default function Footer() {
           <p>
             Email:{' '}
             <a
-              href="mailto:relacionamentocomocliente@grupocontem.com.br"
+              href="mailto:ti@grupocontem.com.br"
               style={{ fontSize: 15 }}
             >
-              relacionamentocomocliente@grupocontem.com.br
+              ti@grupocontem.com.br
             </a>
           </p>
           <p className={'text-center'}>
@@ -77,6 +77,12 @@ export default function Footer() {
           >
             Política de Privacidade e Termos de Uso
           </Link>
+          <a
+            href="mailto:ti@grupocontem.com.br"
+            style={{ fontSize: 12, color: '#888', whiteSpace: 'nowrap', marginLeft: 'auto' }}
+          >
+            ti@grupocontem.com.br
+          </a>
         </div>
       </div>
 
