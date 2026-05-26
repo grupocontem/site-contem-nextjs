@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import CookieConsent from "@/components/CookieConsent/CookieConsent";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp/FloatingWhatsApp";
+import CorretorSpotlight from "@/components/CorretorSpotlight/CorretorSpotlight";
 // Loads Bootstrap JS (requires Popper for some components)
 export default function BootstrapClient() {
   useEffect(() => {
@@ -11,6 +12,7 @@ export default function BootstrapClient() {
   return (
     <>
         <CookieConsent />
+        <CorretorSpotlight />
         <FloatingWhatsApp />
     </>
   );

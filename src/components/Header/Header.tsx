@@ -27,14 +27,19 @@ export default function Header() {
     <header className={styles.header}>
       <div className="bg-white border-bottom">
         <div className="container d-none d-lg-flex justify-content-end gap-2 py-2">
-          <a
-            href="https://corretor.grupocontem.com.br"
-            className="btn btn-sm btn-primary"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Área do Corretor
-          </a>
+          <div className={styles.corretorWrapper}>
+            <span className={styles.corretorPing}></span>
+            <span className={styles.corretorDot}></span>
+            <a
+              id="corretor-btn-desktop"
+              href="https://corretor.grupocontem.com.br"
+              className={`btn btn-sm btn-primary ${styles.corretorBtn}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Área do Corretor
+            </a>
+          </div>
           <a
             href="https://www.digitalsaude.com.br/portal/contem"
             className="btn btn-sm btn-primary"
@@ -113,14 +118,16 @@ export default function Header() {
 
             {/* Right action buttons for mobile inside collapse */}
             <div className="d-lg-none d-flex flex-column gap-2 mb-3">
-              <a
-                href="https://corretor.grupocontem.com.br"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Área do Corretor
-              </a>
+              <div className={styles.corretorWrapper}>
+                <a
+                  href="https://corretor.grupocontem.com.br"
+                  className={`btn btn-primary ${styles.corretorBtn}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Área do Corretor
+                </a>
+              </div>
               <a
                 href="https://www.digitalsaude.com.br/portal/contem"
                 className="btn btn-primary"

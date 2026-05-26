@@ -9,6 +9,56 @@
 /* Social icon sizing */
 .iconWrap img { width: 32px; height: auto; display: block; }
 
+/* Corretor button attention effects */
+.corretorWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.corretorPing {
+  position: absolute;
+  inset: -3px;
+  border-radius: 6px;
+  border: 2px solid #ff3b30;
+  pointer-events: none;
+  animation: corretorPing 2s ease-out infinite;
+}
+
+@keyframes corretorPing {
+  0% { transform: scale(1); opacity: 0.9; }
+  70%, 100% { transform: scale(1.25); opacity: 0; }
+}
+
+.corretorDot {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  background: #ff3b30;
+  border-radius: 50%;
+  border: 2px solid white;
+  z-index: 1;
+  pointer-events: none;
+  animation: dotPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+}
+
+.corretorBtn {
+  animation: corretorGlow 2s ease-in-out infinite;
+}
+
+@keyframes corretorGlow {
+  0%, 100% { box-shadow: 0 0 4px rgba(13, 110, 253, 0.3); }
+  50% { box-shadow: 0 0 14px rgba(13, 110, 253, 0.85); }
+}
+
 @media (max-width: 992px) {
   .navLink { border-right: none; }
+  .corretorPing { display: none; }
+  .corretorDot { display: none; }
 }

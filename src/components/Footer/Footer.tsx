@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from './footer.module.css';
 
 export default function Footer() {
@@ -68,8 +69,14 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className={`row ${styles.copyright}`}>
-        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <p>© Copyright 2025 - Grupo Contém - Todos os direitos reservados.</p>
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex flex-wrap align-items-center gap-3">
+          <p className="mb-0">© Copyright 2025 - Grupo Contém - Todos os direitos reservados.</p>
+          <Link
+            href="/politica-de-privacidade"
+            style={{ fontSize: 12, color: '#888', textDecoration: 'underline', whiteSpace: 'nowrap' }}
+          >
+            Política de Privacidade e Termos de Uso
+          </Link>
         </div>
       </div>
 
