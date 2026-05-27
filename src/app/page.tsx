@@ -40,30 +40,15 @@ export default function Home() {
 
                       <div className="carousel-inner">
                           <div className="carousel-item active" id="carousel-container" data-bs-interval="5000">
-                              <img src={'/img/Banner02.jpg'} className="d-block w-100" id="img-carousel" alt="Banner 02" />
-                              <div className="carousel-caption d-md-block">
-                                  <h5>Planos empresariais<br />do tamanho da sua empresa</h5>
-                                  <br />
-                                  <img src={'/img/logos-banner2.png'} alt="logos" className="ans" height="50" />
-                                  <br />
-                                  <img src={'/img/ans-banner2.png'} alt="ANS" height="18" className="ans" />
-                              </div>
-                          </div>
-
-                          <div className="carousel-item" id="carousel-container" data-bs-interval="5000">
-                              <img src={'/img/Banner03.jpg'} className="d-block w-100" id="img-carousel" alt="Banner 02" />
-                              <div className="carousel-caption d-md-block">
-                                  <h5>PLANEJE <br /> SUA VIDA.</h5>
-                                  <p>Do resto a gente cuida!</p>
-                                  <br />
-                                  <img src={'/img/logos-banner3.png'} alt="logos" height="50" />
-                                  <br />
-                                  <img src={'/img/ans-banner3.png'} alt="ANS" height="18" className="ans" />
-                              </div>
-                          </div>
-
-                          <div className="carousel-item" id="carousel-container" data-bs-interval="5000">
                               <img src={'/img/banner/Banner-Principal.jpeg'} className="d-block w-100" id="img-carousel" alt="Banner Principal" />
+                          </div>
+
+                          <div className="carousel-item" id="carousel-container" data-bs-interval="5000">
+                              <img src={'/img/banner/banner02.jpeg'} className="d-block w-100" id="img-carousel" alt="Banner 02" />
+                          </div>
+
+                          <div className="carousel-item" id="carousel-container" data-bs-interval="5000">
+                              <img src={'/img/banner/banner03.jpeg'} className="d-block w-100" id="img-carousel" alt="Banner 03" />
                           </div>
                       </div>
                   </div>
