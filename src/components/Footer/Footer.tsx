@@ -51,10 +51,10 @@ export default function Footer() {
           <p>
             Email:{' '}
             <a
-              href="mailto:ti@grupocontem.com.br"
+              href="mailto:relacionamentocomocliente@grupocontem.com.br"
               style={{ fontSize: 15 }}
             >
-              ti@grupocontem.com.br
+              relacionamentocomocliente@grupocontem.com.br
             </a>
           </p>
           <p className={'text-center'}>
