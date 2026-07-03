@@ -5,6 +5,7 @@ import styles from "./corretorSpotlight.module.css";
 
 const SPOTLIGHT_KEY = "gc_corretor_spotlight_v1";
 const COOKIE_KEY = "gc_cookie_consent_v1";
+const ANUNCIO_KEY = "gc_anuncio_negocia_v1";
 
 interface BtnRect { top: number; left: number; width: number; height: number; }
 
@@ -25,17 +26,22 @@ export default function CorretorSpotlight() {
 
     let timer: ReturnType<typeof setTimeout>;
     const tryShow = () => { timer = setTimeout(show, 600); };
-    const alreadyDecided = () => {
-      try { return !!localStorage.getItem(COOKIE_KEY); } catch { return false; }
+    // On the home page, let the promo modal go first (wait until it's dismissed).
+    const anuncioPending = () => {
+      if (window.location.pathname !== "/") return false;
+      try { return !localStorage.getItem(ANUNCIO_KEY); } catch { return false; }
+    };
+    const readyToShow = () => {
+      try { return !!localStorage.getItem(COOKIE_KEY) && !anuncioPending(); } catch { return false; }
     };
 
-    if (alreadyDecided()) {
+    if (readyToShow()) {
       tryShow();
       return () => clearTimeout(timer);
     }
 
     const interval = setInterval(() => {
-      if (alreadyDecided()) {
+      if (readyToShow()) {
         clearInterval(interval);
         tryShow();
       }
